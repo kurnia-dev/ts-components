@@ -1,6 +1,6 @@
 {
   "name": "ts-vue-components",
-  "version": "0.0.8",
+  "version": "0.1.9",
   "type": "module",
   "description": "Tag Samurai's Vue Components",
   "exports": "./dist/ts-vue-components.es.js",
@@ -8,7 +8,8 @@
   "unpkg": "dist/ts-vue-components.umd.js",
   "types": "dist/types/index.d.ts",
   "files": [
-    "dist"
+    "dist",
+    "src/**/*.d.ts"
   ],
   "scripts": {
     "dev": "vite",
@@ -21,7 +22,8 @@
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
-    "build:pub": "npm run build && npm link && npm publish"
+    "build:pub": "npm run build && npm link && npm publish",
+    "generate:types": "vue-tsc --declaration --emitDeclarationOnly --outdir ./dist"
   },
   "keywords": [],
   "author": "Kurnia-dev",

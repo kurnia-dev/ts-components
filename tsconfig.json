@@ -15,7 +15,7 @@
       "DOM"
     ],
     "skipLibCheck": true,
-    "noEmit": true,
+    "emitDeclarationOnly": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,

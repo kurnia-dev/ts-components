@@ -1,14 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref, computed } from 'vue';
+import type { ButtonProps } from './TSButton.vue.d';
 
-const props = defineProps<{
-  label?: string | ((...args: unknown[]) => string);
-  icon?: string;
-  iconPos?: 'left' | 'right';
-  severity?: 'primary' | 'danger' | 'success' | 'secondary';
-  outlined?: boolean;
-  textOnly?: boolean;
-}>();
+const props = defineProps<ButtonProps>();
 
 type ButtonEvent = MouseEvent & {
   currentTarget: HTMLButtonElement;

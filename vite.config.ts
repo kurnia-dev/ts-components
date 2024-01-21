@@ -3,9 +3,8 @@ import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  base: '/ts-admin-components-dev',
+  root: '.',
   plugins: [
     vue(),
     dts({
@@ -13,12 +12,13 @@ export default defineConfig({
     }),
   ],
   build: {
-    cssCodeSplit: true,
+    emptyOutDir: false,
+    outDir: 'dist',
+    sourcemap: true,
     lib: {
-      // Could also be a dictionary or array of multiple entry points
       entry: resolve(__dirname, 'src/components/index.ts'),
       name: 'ts-vue-components',
-      formats: ['es', 'cjs', 'umd'],
+      formats: ['es', 'cjs'],
       fileName: (format) => `ts-vue-components.${format}.js`,
     },
     rollupOptions: {

@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes, VNode } from 'vue';
 /**
  * Button component props
  */
-interface ButtonProps extends ButtonHTMLAttributes {
+export interface ButtonProps extends /* @vue-ignore */ ButtonHTMLAttributes {
   /**
    * Text to display on the button
    */
@@ -45,16 +45,17 @@ interface ButtonSlots {
 /**
  * Button component emits
  */
-interface ButtonEmits {
-  /**
-   * Click event for the button
-   * @param event - The click event
-   */
-  click: (event: MouseEvent & { currentTarget: HTMLButtonElement }) => void;
-}
+export interface ButtonEmits {}
 
 /**
- * Button component
+ * **TSVue - Button**
+ *
+ * _Button is an extension to standard button element with icons and theming._
+ *
+ * --- ---
+ * ![TSVue](https://ik.imagekit.io/kurniadev/TS-HEAD-BLACK.png)
+ *
+ * @group components
  */
 declare const Button: import('vue').DefineComponent<
   ButtonProps,
