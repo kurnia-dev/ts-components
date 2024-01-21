@@ -78,5 +78,10 @@ const createRipple = (event: ButtonEvent): void => {
   >
     <i v-if="props.icon" :class="props.icon" class="ts-button-icon" />
     {{ props.label }}
+    <slot />
   </button>
 </template>
+
+<style lang="scss">
+@import './style/TSButton.scss';
+</style>

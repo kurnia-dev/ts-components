@@ -41,7 +41,8 @@ export default defineConfig({
     alias: {
       '@': resolve(__dirname, 'src'),
       'rfs': resolve(__dirname, 'node_modules/rfs'),
-      'scss': resolve(__dirname, 'src/assets/scss'),
+      'var': resolve(__dirname, 'src/assets/var.scss'),
+      'assets': resolve(__dirname, 'src/assets'),
       'bootstrap': resolve(__dirname, 'node_modules/bootstrap'),
       'primevue': resolve(__dirname, 'node_modules/primevue'),
       'remixicon': resolve(__dirname, 'node_modules/remixicon'),
