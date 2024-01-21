@@ -8,6 +8,9 @@ export default mergeConfig(
     test: {
       globals: true,
       environment: 'jsdom',
+      coverage: {
+        reporter: ['text'],
+      },
       exclude: [...configDefaults.exclude, 'e2e/*'],
       root: resolve(__dirname),
     },
