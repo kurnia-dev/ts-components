@@ -1,0 +1,9 @@
+{
+  "main": "./tsbutton.cjs.js",
+  "module": "./tsbutton.esm.js",
+  "unpkg": "./tsbutton.min.js",
+  "types": "./TSButton.d.ts",
+  "browser": {
+    "./sfc": "./TSButton.vue"
+  }
+}
