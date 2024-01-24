@@ -4,6 +4,7 @@
 .ts-button {
   all: unset;
   box-sizing: border-box;
+  cursor: pointer;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -55,6 +56,18 @@
     &.text-only.ts-button-danger {
       color: $danger !important;
     }
+  }
+
+  &.text-only.ts-button-success {
+    color: $success !important;
+  }
+
+  &.text-only.ts-button-primary {
+    color: $primary !important;
+  }
+
+  &.text-only.ts-button-danger {
+    color: $danger !important;
   }
 
   &.text-only {

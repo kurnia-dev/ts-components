@@ -25,3 +25,10 @@ a,
     place-items: center;
   }
 }
+
+
+.p-inline-message {
+  justify-content: flex-start !important;
+  padding: 0.75rem 1rem;
+}
+

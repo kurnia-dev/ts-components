@@ -40,6 +40,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
+      'lib': resolve(__dirname, 'src/components/lib'),
       'rfs': resolve(__dirname, 'node_modules/rfs'),
       'var': resolve(__dirname, 'src/assets/var.scss'),
       'assets': resolve(__dirname, 'src/assets'),

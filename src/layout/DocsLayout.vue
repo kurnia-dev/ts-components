@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted, onUpdated } from 'vue';
 import { useRoute } from 'vue-router';
 import { useHead } from '@vueuse/head';
 import HeaderLayout from './HeaderLayout.vue';
@@ -7,12 +7,32 @@ import SidebarLeft from './SidebarLeft.vue';
 import SidebarRight from './SidebarRight.vue';
 import FooterLayout from './FooterLayout.vue';
 
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github.css';
+
 const route = useRoute();
 const title = computed(() => route.meta.title as string);
 
 useHead({
   title: title.value,
 });
+
+onMounted(() => {
+  highlight();
+});
+
+onUpdated(() => {
+  highlight();
+});
+
+const highlight = (): void => {
+  document.querySelectorAll('pre').forEach((block) => {
+    hljs.configure({
+      languages: ['vue'],
+    });
+    hljs.highlightElement(block as HTMLElement);
+  });
+};
 </script>
 
 <template>
@@ -41,8 +61,17 @@ main.tsvue-docs-main {
   color: $general-body;
 
   h1.ts-vue-page-title {
-    color: $general-header-weak;
     font-size: 2rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $general-header-weak;
+    font-weight: 600;
   }
 }
 
@@ -51,6 +80,7 @@ main.tsvue-docs-main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-height: 100vh;
 
   .docs-layout-content {
     display: grid;
@@ -87,6 +117,34 @@ main.tsvue-docs-main {
     * {
       background: none;
     }
+  }
+}
+
+.tsvue-docs-main {
+  pre,
+  .component-preview {
+    border-radius: 4px;
+    padding: 1rem;
+    font-size: 0.95rem;
+    border: 1px solid rgb(223, 231, 239);
+    background: rgb(255, 255, 255);
+  }
+
+  .component-preview {
+    justify-content: center;
+  }
+
+  code {
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    white-space: break-spaces;
+    background-color: rgba(166, 226, 190, 0.2);
+    border-radius: 6px;
+  }
+
+  .separator {
+    padding: 1rem;
   }
 }
 </style>

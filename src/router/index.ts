@@ -22,6 +22,13 @@ const router = createRouter({
           component: (): Promise<Component> =>
             import('@/components/docs/TSButtonDocs.vue'),
         },
+        {
+          path: '/inputtext',
+          name: 'TSVueInputTextDocs',
+          meta: { title: 'Input Text' },
+          component: (): Promise<Component> =>
+            import('@/components/docs/TSInputTextDocs.vue'),
+        },
       ],
     },
   ],

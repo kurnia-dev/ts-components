@@ -13,4 +13,8 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
+  rules: {
+    'vue/no-static-inline-styles': 'off',
+    'vue/block-lang': 'off',
+  },
 };

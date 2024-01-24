@@ -24,9 +24,12 @@ const websiteUrl = ref('www.tagsamurai.com');
 footer.tsvue-docs-footer {
   padding: 1rem;
   border-top: 1px solid rgb(223, 231, 239);
+  margin-top: auto;
 
   .footer-content {
     max-width: $content-max-width;
+    margin: 0 auto;
+
     p {
       color: $general-body;
       margin: 10px 0;
