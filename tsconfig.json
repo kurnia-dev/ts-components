@@ -41,5 +41,9 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue"
+  ],
+  "exclude": [
+    "cypress",
+    "**/*.spec.ts"
   ]
 }
