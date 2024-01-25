@@ -258,4 +258,52 @@ body {
   height: max-content !important;
   max-height: 90vh !important;
 }
+
+.bg-primary-weak {
+  background: $primary-weak;
+}
+
+.bg-success-weak {
+  background: $success-weak;
+}
+
+.bg-danger-weak {
+  background: $danger-weak;
+}
+
+.bg-warning-weak {
+  background: $warning-weak;
+}
+
+.bg-dark-weak {
+  background: $dark-weak;
+}
+
+.text-warning {
+  color: #b99000 !important;
+}
+
+.text-success {
+  color: $success !important;
+}
+
+.text-primary {
+  color: $primary !important;
+}
+
+.text-dark {
+  color: $dark !important;
+}
+
+.text-danger {
+  color: $danger !important;
+}
+
+.fs-body {
+  @include font-size(11.2px !important);
+}
+
+.w-full {
+  width: 100% !important;
+}
 </style>

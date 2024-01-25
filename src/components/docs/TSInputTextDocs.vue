@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import TSInputText from '../lib/inputtext/TSInputText.vue';
 import CodeBlock from '@/components/codeblock/CodeBlock.vue';
 </script>
 
