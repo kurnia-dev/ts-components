@@ -1,6 +1,6 @@
 {
   "name": "ts-vue-components",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "description": "Tag Samurai's Vue Components",
   "exports": "./dist/ts-vue-components.es.js",

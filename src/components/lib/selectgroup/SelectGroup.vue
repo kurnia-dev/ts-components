@@ -6,7 +6,7 @@ import SelectGroupDialog from '../selectgroupdialog/SelectGroupDialog.vue';
 import TSButton from '@/components/button/TSButton.vue';
 import NameContainer from '../namecontainer/NameContainer.vue';
 import { TreeNode } from 'primevue/tree';
-import { SelectGroupProps, SelectGroupEmits } from './SelectGroup.d';
+import { SelectGroupProps, SelectGroupEmits } from './SelectGroup.vue.d';
 
 const props = defineProps<SelectGroupProps>();
 
