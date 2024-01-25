@@ -79,6 +79,14 @@ export interface SelectGroupProps {
    * Boolean to disable the button SelectGroup
    */
   disabled?: boolean;
+  /**
+   * When used in form, set the prop `label` the define field label.
+   */
+  label?: string;
+  /**
+   * Wether the field group should be filled or not.
+   */
+  mandatory?: string;
 }
 
 /**

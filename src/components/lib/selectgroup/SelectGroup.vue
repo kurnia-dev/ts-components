@@ -75,46 +75,52 @@ const setSelectedGroup = (nodes?: TreeNode | TreeNode[]): void => {
 
 <template>
   <template v-if="!props.hideButton">
-    <template v-if="props.selectionMode === 'single'">
+    <div :class="{ field_wrapper: label }">
+      <label v-if="label">
+        {{ label }}
+        <span v-if="mandatory" class="text-danger">*</span>
+      </label>
+      <template v-if="props.selectionMode === 'single'">
+        <TSButton
+          v-if="isObjectEmpty(singleValue ?? {})"
+          :class="buttonClass"
+          :disabled="disabled"
+          :label="buttonLabel"
+          :style="buttonStyle"
+          @click="showGroupDialog"
+          severity="primary"
+          type="button"
+        />
+        <!-- Showing Single Selected Group Name -->
+        <div v-else class="selected-group-name">
+          <NameContainer :name="singleSelectedGroupName" />
+          <Button
+            :disabled="disabled"
+            @click="showGroupDialog"
+            class="edit-group"
+            rounded
+            severity="primary"
+            text
+            type="button"
+          >
+            <i class="ri-edit-2-line" />
+          </Button>
+          <span v-if="showExceededLabel" class="ms-1 text-danger">
+            Group Quota Exceeded
+          </span>
+        </div>
+      </template>
       <TSButton
-        v-if="isObjectEmpty(singleValue ?? {})"
+        v-else
         :class="buttonClass"
         :disabled="disabled"
         :label="buttonLabel"
-        :style="buttonStyle"
         @click="showGroupDialog"
+        class="d-block w-100"
         severity="primary"
         type="button"
       />
-      <!-- Showing Single Selected Group Name -->
-      <div v-else class="selected-group-name">
-        <NameContainer :name="singleSelectedGroupName" />
-        <Button
-          :disabled="disabled"
-          @click="showGroupDialog"
-          class="edit-group"
-          rounded
-          severity="primary"
-          text
-          type="button"
-        >
-          <i class="ri-edit-2-line" />
-        </Button>
-        <span v-if="showExceededLabel" class="ms-1 text-danger">
-          Group Quota Exceeded
-        </span>
-      </div>
-    </template>
-    <TSButton
-      v-else
-      :class="buttonClass"
-      :disabled="disabled"
-      :label="buttonLabel"
-      @click="showGroupDialog"
-      class="d-block w-100"
-      severity="primary"
-      type="button"
-    />
+    </div>
   </template>
   <SelectGroupDialog
     :button-label="dialogFooterButtonLabel"
@@ -147,5 +153,11 @@ const setSelectedGroup = (nodes?: TreeNode | TreeNode[]): void => {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.field_wrapper {
+  .ts-button {
+    width: 100% !important;
+  }
 }
 </style>
