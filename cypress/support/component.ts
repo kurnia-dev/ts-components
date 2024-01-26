@@ -1,27 +1,27 @@
-/* eslint-disable promise/no-nesting */
-/* eslint-disable promise/prefer-await-to-callbacks */
-/* eslint-disable promise/always-return */
-/* eslint-disable promise/prefer-await-to-then */
 /// <reference types="cypress" />
+import { App, DefineComponent } from 'vue';
+import { mount } from '@cypress/vue';
+import PrimeVue from 'primevue/config';
 
-before(() => {
-  const stylesheets: string[] = [
-    'node_modules/primeicons/primeicons.css',
-    'node_modules/primevue/resources/primevue.min.css',
-    'node_modules/primevue/resources/themes/lara-light-blue/theme.css',
-    'node_modules/remixicon/fonts/remixicon.css',
-    'src/assets/main.css',
-  ];
+import 'primeicons/primeicons.css';
+import 'primevue/resources/primevue.min.css';
+import 'primevue/resources/themes/lara-light-blue/theme.css';
+import 'remixicon/fonts/remixicon.css';
+import 'assets/main.css';
+import 'assets/app.scss';
 
-  return cy.document().then((doc: Document) => {
-    return Promise.all(
-      stylesheets.map((stylesheet: string) => {
-        return cy.readFile(stylesheet, 'utf-8').then((content: string) => {
-          const style: HTMLStyleElement = doc.createElement('style');
-          style.innerHTML = content;
-          doc.querySelector('head')?.appendChild(style);
-        });
-      }),
-    );
+Cypress.Commands.add('mount', (component: DefineComponent, options = {}) => {
+  options.global = options.global || {};
+  options.global.stubs = options.global.stubs || {};
+  options.global.stubs['transition'] = false;
+  options.global.components = options.global.components || {};
+  options.global.plugins = options.global.plugins || [];
+
+  options.global.plugins.push({
+    install(app: App) {
+      app.use(PrimeVue);
+    },
   });
+
+  return mount(component, options);
 });

@@ -8,7 +8,7 @@ import 'primeicons/primeicons.css';
 import 'primevue/resources/primevue.min.css';
 import 'primevue/resources/themes/lara-light-blue/theme.css';
 import 'remixicon/fonts/remixicon.css';
-import './assets/main.css';
+import '../src/assets/main.css';
 
 import Button from 'primevue/button';
 import Calendar from 'primevue/calendar';

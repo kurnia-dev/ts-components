@@ -161,3 +161,4 @@ const setSelectedGroup = (nodes?: TreeNode | TreeNode[]): void => {
   }
 }
 </style>
+../nametag/NameContainer.vue

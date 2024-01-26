@@ -18,7 +18,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/components/index.ts'),
       name: 'ts-vue-components',
-      formats: ['es', 'cjs'],
+      formats: ['es', 'cjs', 'umd'],
       fileName: (format) => `ts-vue-components.${format}.js`,
     },
     rollupOptions: {

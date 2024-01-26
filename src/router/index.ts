@@ -29,6 +29,13 @@ const router = createRouter({
           component: (): Promise<Component> =>
             import('@/components/docs/TSInputTextDocs.vue'),
         },
+        {
+          path: '/selectgroup',
+          name: 'TSVueSelectGroupDocs',
+          meta: { title: 'Input Text' },
+          component: (): Promise<Component> =>
+            import('@/components/docs/SelectGroupDocs.vue'),
+        },
       ],
     },
   ],

@@ -11,7 +11,6 @@ export default defineConfig({
     specPattern: 'src/**/*.cy.spec.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/component.ts',
     devServer: {
-      baseUrl: 'http://localhost:5173',
       framework: 'vue',
       bundler: 'vite',
     },
