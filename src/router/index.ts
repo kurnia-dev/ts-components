@@ -36,6 +36,13 @@ const router = createRouter({
           component: (): Promise<Component> =>
             import('@/components/docs/SelectGroupDocs.vue'),
         },
+        {
+          path: '/nametag',
+          name: 'TSVueNameTagDocs',
+          meta: { title: 'Name Tag' },
+          component: (): Promise<Component> =>
+            import('@/components/docs/NameTagDocs.vue'),
+        },
       ],
     },
   ],

@@ -86,4 +86,3 @@ const formatUserName = (name: string): string => {
 <style lang="scss">
 @import './style/NameTag.scss';
 </style>
-./NameTag.vue

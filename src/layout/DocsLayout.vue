@@ -18,20 +18,28 @@ useHead({
 });
 
 onMounted(() => {
+  formatInlineCode();
   highlight();
 });
 
 onUpdated(() => {
+  formatInlineCode();
   highlight();
 });
 
 const highlight = (): void => {
-  document.querySelectorAll('pre').forEach((block) => {
+  document.querySelectorAll('.code-block code').forEach((block) => {
     hljs.configure({
       languages: ['vue'],
     });
     hljs.highlightElement(block as HTMLElement);
   });
+};
+
+const formatInlineCode = (): void => {
+  const main = document.querySelector('.tsvue-docs-main') as HTMLElement;
+  if (main)
+    main.innerHTML = main?.innerHTML.replace(/`(.+?)`/g, '<code>$1</code>');
 };
 </script>
 
@@ -121,13 +129,22 @@ main.tsvue-docs-main {
 }
 
 .tsvue-docs-main {
-  pre,
+  .code-block,
   .component-preview {
     border-radius: 4px;
     padding: 1rem;
     font-size: 0.95rem;
     border: 1px solid rgb(223, 231, 239);
     background: rgb(255, 255, 255);
+
+    code {
+      background: none;
+    }
+  }
+
+  .code-block {
+    display: flex;
+    flex-direction: column;
   }
 
   .component-preview {

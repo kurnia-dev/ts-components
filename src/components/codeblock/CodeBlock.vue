@@ -3,7 +3,9 @@ import { CodeBlockProps } from './CodeBlock.vue.d';
 defineProps<CodeBlockProps>();
 </script>
 <template>
-  <pre
+  <div
     :class="['code-block', `language-${lang == 'ts' ? 'typescript' : 'html'}`]"
-  ><slot /></pre>
+  >
+    <slot />
+  </div>
 </template>
