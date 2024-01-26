@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import TSButton from '../button/TSButton.vue';
+import TSButton from '../lib/button/TSButton.vue';
 </script>
 
 <template>

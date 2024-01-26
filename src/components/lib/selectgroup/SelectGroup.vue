@@ -3,7 +3,7 @@
 import { computed, ref } from 'vue';
 import { isObjectEmpty } from '@/utils';
 import SelectGroupDialog from '../selectgroupdialog/SelectGroupDialog.vue';
-import TSButton from '@/components/button/TSButton.vue';
+import TSButton from '@/components/lib/button/TSButton.vue';
 import NameContainer from '../namecontainer/NameContainer.vue';
 import { TreeNode } from 'primevue/tree';
 import { SelectGroupProps, SelectGroupEmits } from './SelectGroup.vue.d';

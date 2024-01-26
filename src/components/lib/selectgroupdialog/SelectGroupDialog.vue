@@ -2,7 +2,7 @@
 <script lang="ts" setup>
 import { computed, ref, watch } from 'vue';
 import GroupTree from '../grouptree/GroupTree.vue';
-import TSButton from '@/components/button/TSButton.vue';
+import TSButton from '@/components/lib/button/TSButton.vue';
 import { TreeSelectionKeys } from 'primevue/tree';
 
 const props = defineProps<{

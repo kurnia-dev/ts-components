@@ -1,6 +1,6 @@
 import type { App } from 'vue';
 import PrimeVue from 'primevue/config';
-import TSButton from './button/TSButton.vue';
+import TSButton from './lib/lib/button/TSButton.vue';
 import TSInputText from './lib/inputtext/TSInputText.vue';
 import SelectGroup from './lib/selectgroup/SelectGroup.vue';
 import GroupTree from './lib/grouptree/GroupTree.vue';
