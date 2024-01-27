@@ -34,7 +34,8 @@
       "jsdom",
       "vite/client",
       "vitest/globals",
-      "cypress"
+      "cypress",
+      "./cypress.d.ts"
     ]
   },
   "include": [

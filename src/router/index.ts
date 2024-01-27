@@ -43,6 +43,13 @@ const router = createRouter({
           component: (): Promise<Component> =>
             import('@/components/docs/NameTagDocs.vue'),
         },
+        {
+          path: '/filtercontainer',
+          name: 'TSVueFilterContainerDocs',
+          meta: { title: 'Filter Container' },
+          component: (): Promise<Component> =>
+            import('@/components/docs/FilterContainerDocs.vue'),
+        },
       ],
     },
   ],

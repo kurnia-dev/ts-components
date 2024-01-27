@@ -32,7 +32,7 @@ onMounted(() => {
 </script>
 <template>
   <div ref="container" class="ts-filter-container">
-    <slot :key="contentKey" name="content" />
+    <slot :key="contentKey" />
     <div class="ts-filter-action-button">
       <TSButton
         @click="$emit('clear'), contentKey++"

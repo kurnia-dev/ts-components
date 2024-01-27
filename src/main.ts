@@ -8,6 +8,8 @@ import 'primevue/resources/themes/lara-light-blue/theme.css';
 import 'remixicon/fonts/remixicon.css';
 import '../src/assets/main.css';
 
+import CodeBlock from '@/components/codeblock/CodeBlock.vue';
+
 import Button from 'primevue/button';
 import Calendar from 'primevue/calendar';
 import Checkbox from 'primevue/checkbox';
@@ -30,6 +32,7 @@ const app = createApp(App);
 app.component('Button', Button);
 app.component('Calendar', Calendar);
 app.component('Checkbox', Checkbox);
+app.component('CodeBlock', CodeBlock);
 app.component('Column', Column);
 app.component('DataTable', DataTable);
 app.component('Dialog', Dialog);

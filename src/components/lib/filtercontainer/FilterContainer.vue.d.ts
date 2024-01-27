@@ -1,4 +1,4 @@
-import { DefineComponent } from 'vue';
+import { DefineComponent, Slot } from 'vue';
 
 /**
  * Emits for TSFilterContainer component
@@ -6,6 +6,13 @@ import { DefineComponent } from 'vue';
 export type TSFilterContainerEmits = {
   apply: [];
   clear: [];
+};
+
+/**
+ * Slots for TSFilterContainer component
+ */
+export type TSFilterContainerSlots = {
+  default: Slot;
 };
 
 /**
@@ -22,7 +29,8 @@ export type TSFilterContainerEmits = {
  */
 declare const TSFilterContainer: DefineComponent<
   object,
-  TSFilterContainerEmits
+  TSFilterContainerEmits,
+  TSFilterContainerSlots
 >;
 
 export default TSFilterContainer;

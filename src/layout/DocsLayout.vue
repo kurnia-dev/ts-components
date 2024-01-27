@@ -139,6 +139,7 @@ main.tsvue-docs-main {
 
     code {
       background: none;
+      white-space: pre-line;
     }
   }
 

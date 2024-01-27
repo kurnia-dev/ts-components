@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import CodeBlock from '@/components/codeblock/CodeBlock.vue';
+import TSInputText from '../lib/inputtext/TSInputText.vue';
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import CodeBlock from '@/components/codeblock/CodeBlock.vue';
   </p>
   <div class="separator" />
   <h2>Import</h2>
+  <TSInputText placeholder="Type Something" />
   <CodeBlock lang="ts">
     import { TSInputText } from 'ts-vue-components'
   </CodeBlock>

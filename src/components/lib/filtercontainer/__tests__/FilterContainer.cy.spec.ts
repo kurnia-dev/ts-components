@@ -1,8 +1,5 @@
 /// <reference types="cypress" />
 import FilterContainer from '../FilterContainer.vue';
-type FilterContainer = InstanceType<typeof FilterContainer> & {
-  contentKey?: number;
-};
 
 describe('FilterContainer.vue', () => {
   beforeEach(() => {
@@ -12,7 +9,7 @@ describe('FilterContainer.vue', () => {
 
     cy.mount(FilterContainer, {
       slots: {
-        content: childElements,
+        default: childElements,
       },
     });
   });
