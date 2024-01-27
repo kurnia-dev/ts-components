@@ -1,21 +1,11 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
 import TSButton from '../button/TSButton.vue';
+import { TSFilterContainerEmits } from './FilterContainer.vue.d';
+
+defineEmits<TSFilterContainerEmits>();
 
 const container = ref<HTMLDivElement | null>(null);
-
-/**
- * This component is used to generate a dynamic grid-based layout for any count of filter fields.
- * It calculates the number of children in the container and sets their grid area style dynamically.
- * The grid layout is determined by the row and column position, which are incremented based on the child count.
- * If the child count is odd and the child is the last one (wich is Buttons Action),
- * it is placed in the 4th column.
- */
-defineEmits<{
-  apply: [];
-  clear: [];
-}>();
-
 const contentKey = ref<number>(0);
 
 onMounted(() => {
@@ -55,26 +45,5 @@ onMounted(() => {
   </div>
 </template>
 <style lang="scss">
-@import '~rfs/scss';
-
-.ts-filter-container {
-  display: grid;
-  @include padding(12px !important);
-  gap: 1rem;
-  align-items: flex-end;
-  background-color: #f5f5f5;
-  grid-template-columns: repeat(4, 1fr);
-
-  > * {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .ts-filter-action-button {
-    display: flex;
-    align-items: baseline;
-    justify-content: flex-end;
-    gap: 4px;
-  }
-}
+@import './style/FilterContainer.scss';
 </style>

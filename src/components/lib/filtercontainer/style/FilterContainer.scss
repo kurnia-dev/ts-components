@@ -1,0 +1,22 @@
+@import 'rfs/scss';
+
+.ts-filter-container {
+  display: grid;
+  @include padding(12px !important);
+  gap: 1rem;
+  align-items: flex-end;
+  background-color: #f5f5f5;
+  grid-template-columns: repeat(4, 1fr);
+
+  > * {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .ts-filter-action-button {
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+}

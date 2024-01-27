@@ -5,6 +5,6 @@ declare namespace Cypress {
      * Custom command to mount a Vue component in a Cypress test.
      * @example cy.mount(MyComponent)
      */
-    mount(component: any, options?: any): Chainable<any>;
+    mount(component: any, options?: any): Chainable;
   }
 }
