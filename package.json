@@ -24,7 +24,8 @@
     "format": "prettier --write src/",
     "build:pub": "npm run build && npm link && npm publish",
     "generate:types": "vue-tsc --declaration --emitDeclarationOnly --outdir ./dist",
-    "cypress:component": "cypress open --component --browser chrome"
+    "cypress:component": "cypress open --component --browser chrome",
+    "test:unit": "cypress run --spec \"**/unit/*.cy.spec.{js,jsx,ts,tsx}\" --browser chrome"
   },
   "keywords": [],
   "author": "Kurnia-dev",

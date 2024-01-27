@@ -1,5 +1,5 @@
-import NameTag from '../NameTag.vue';
-import '../style/NameTag.scss';
+import NameTag from '../../NameTag.vue';
+import '../../style/NameTag.scss';
 
 describe('NameTag', () => {
   it('displays hyphen if name prop is empty', () => {

@@ -1,4 +1,4 @@
-import { formatUserName } from '../helpers';
+import { formatUserName } from '../../helpers';
 
 describe('formatUserName', () => {
   it('should return the same name if the length is less than or equal to 8', () => {
