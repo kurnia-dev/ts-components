@@ -4,7 +4,7 @@ import { computed, ref } from 'vue';
 import { isObjectEmpty } from '@/utils';
 import SelectGroupDialog from '../selectgroupdialog/SelectGroupDialog.vue';
 import TSButton from '@/components/lib/button/TSButton.vue';
-import NameContainer from '../namecontainer/NameContainer.vue';
+import NameTag from '../nametag/NameTag.vue';
 import { TreeNode } from 'primevue/tree';
 import { SelectGroupProps, SelectGroupEmits } from './SelectGroup.vue.d';
 
@@ -93,7 +93,7 @@ const setSelectedGroup = (nodes?: TreeNode | TreeNode[]): void => {
         />
         <!-- Showing Single Selected Group Name -->
         <div v-else class="selected-group-name">
-          <NameContainer :name="singleSelectedGroupName" />
+          <NameTag :name="singleSelectedGroupName" />
           <Button
             :disabled="disabled"
             @click="showGroupDialog"
@@ -161,4 +161,3 @@ const setSelectedGroup = (nodes?: TreeNode | TreeNode[]): void => {
   }
 }
 </style>
-../nametag/NameContainer.vue
