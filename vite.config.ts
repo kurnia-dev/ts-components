@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { resolve } from 'path';
 import dts from 'vite-plugin-dts';
+import istanbul from 'vite-plugin-istanbul';
 
 export default defineConfig({
   root: '.',
@@ -9,6 +10,12 @@ export default defineConfig({
     vue(),
     dts({
       insertTypesEntry: true,
+    }),
+    istanbul({
+      include: 'src/*',
+      exclude: ['node_modules', 'test/'],
+      extension: ['.js', '.ts', '.vue'],
+      requireEnv: false,
     }),
   ],
   build: {

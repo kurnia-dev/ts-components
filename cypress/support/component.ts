@@ -2,6 +2,7 @@
 import { App, DefineComponent } from 'vue';
 import { mount } from '@cypress/vue';
 import PrimeVue from 'primevue/config';
+import '@cypress/code-coverage/support';
 
 import 'primeicons/primeicons.css';
 import 'primevue/resources/primevue.min.css';
@@ -24,4 +25,8 @@ Cypress.Commands.add('mount', (component: DefineComponent, options = {}) => {
   });
 
   return mount(component, options);
+});
+
+afterEach(() => {
+  cy.task('coverageReport');
 });
