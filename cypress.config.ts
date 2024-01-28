@@ -8,19 +8,24 @@ export default defineConfig({
   e2e: {
     specPattern: '**/unit/*.cy.spec.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/e2e.ts',
-    setupNodeEvents(on) {
+    setupNodeEvents(on, config) {
+      Task(on, config);
       reporter(on);
+
+      return config;
     },
   },
   component: {
     specPattern: 'src/**/*.cy.spec.{js,jsx,ts,tsx}',
     supportFile: 'cypress/support/component.ts',
+    watchForFileChanges: false,
     devServer: {
       framework: 'vue',
       bundler: 'vite',
     },
     setupNodeEvents(on, config) {
       Task(on, config);
+      reporter(on);
 
       return config;
     },

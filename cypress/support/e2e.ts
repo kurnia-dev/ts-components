@@ -19,6 +19,10 @@
 import './commands';
 import 'cypress-mochawesome-reporter/register';
 
+after(() => {
+  cy.task('coverageReport');
+});
+
 /*
  * Alternatively you can use CommonJS syntax:
  * require('./commands')

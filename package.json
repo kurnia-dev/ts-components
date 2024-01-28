@@ -25,18 +25,23 @@
     "build:pub": "npm run build && npm link && npm publish",
     "generate:types": "vue-tsc --declaration --emitDeclarationOnly --outdir ./dist",
     "cypress:component": "cypress open --component --browser chrome",
-    "test:unit": "nyc instrument ./src ./.nyc_output && cypress run --spec \"**/unit/*.cy.spec.{js,jsx,ts,tsx}\" --browser chrome && nyc report --reporter=lcov --reporter=text"
+    "test:unit": "nyc instrument ./src ./.nyc_output && cypress run --spec \"**/*.cy.spec.{js,jsx,ts,tsx}\" --browser chrome",
+    "test:all": "nyc instrument ./src ./.nyc_output && cypress open --e2e --browser chrome"
   },
   "nyc": {
     "instrument": true,
-    "report-dir": "coverage",
+    "report-dir": "cypress-coverage",
     "reporter": [
       "lcov",
-      "text-summary"
+      "html",
+      "text-summary",
+      "text"
     ],
-    "all": true,
     "include": [
       "src/**/*.ts"
+    ],
+    "exclude": [
+      "src/**/*spec.ts"
     ],
     "extension": [
       ".ts"
