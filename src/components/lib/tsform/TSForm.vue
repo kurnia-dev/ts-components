@@ -121,44 +121,47 @@ const onSave = (): void => {
         </div>
       </div>
       <div class="ts-form-action-buttons">
-        <Button
-          v-if="props.buttonsTemplate?.includes('cancel')"
-          @click="$emit('cancel')"
-          label="Cancel"
-          type="button"
-        />
-        <Button
-          v-if="props.buttonsTemplate?.includes('clear')"
-          @click="fieldsKey++, $emit('clear')"
-          label="Clear Field"
-          severity="primary"
-          text-only
-          type="button"
-        />
-        <Button
-          v-if="props.buttonsTemplate?.includes('save-outlined')"
-          @click="onSave"
-          label="Save"
-          outlined
-          severity="success"
-          type="button"
-        />
-        <Button
-          v-if="props.buttonsTemplate?.includes('save')"
-          @click="onSave"
-          label="Save"
-          severity="success"
-          type="button"
-        />
-        <Button
-          v-if="props.buttonsTemplate?.includes('submit')"
-          @click="onSubmitClicked"
-          label="Submit"
-          severity="success"
-          type="submit"
-        />
+        <div class="button-wrapper">
+          <Button
+            v-if="props.buttonsTemplate?.includes('cancel')"
+            @click="$emit('cancel')"
+            label="Cancel"
+            type="button"
+          />
+          <Button
+            v-if="props.buttonsTemplate?.includes('clear')"
+            @click="fieldsKey++, $emit('clear')"
+            label="Clear Field"
+            severity="primary"
+            text-only
+            type="button"
+          />
+          <Button
+            v-if="props.buttonsTemplate?.includes('save-outlined')"
+            @click="onSave"
+            label="Save"
+            outlined
+            severity="success"
+            type="button"
+          />
+          <Button
+            v-if="props.buttonsTemplate?.includes('save')"
+            @click="onSave"
+            label="Save"
+            severity="success"
+            type="button"
+          />
+          <Button
+            v-if="props.buttonsTemplate?.includes('submit')"
+            @click="onSubmitClicked"
+            label="Submit"
+            severity="success"
+            type="submit"
+          />
+        </div>
         <ValidatorMessage
           v-show="showValidator"
+          class="ts-form-validator-message"
           message="Please input all required field!"
         />
       </div>
@@ -212,11 +215,19 @@ const onSave = (): void => {
   }
 
   &-action-buttons {
+    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
-    gap: 12px;
-    position: relative;
+    gap: 4px;
+
+    .button-wrapper {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      gap: 12px;
+    }
   }
 }
 
@@ -256,5 +267,10 @@ const onSave = (): void => {
   .p-dialog-content {
     margin-bottom: auto;
   }
+}
+
+.ts-form-validator-message {
+  position: static;
+  width: max-content;
 }
 </style>
