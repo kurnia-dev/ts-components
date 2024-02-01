@@ -19,11 +19,18 @@ const emit = defineEmits<{
   (e: 'cancel'): void;
   (e: 'apply', data?: TreeSelectionKeys): void;
   (e: 'keyChange', data?: object): void;
+  (e: 'update:show', data: boolean): void;
 }>();
 
 const selectedGroupsTemp = ref<TreeSelectionKeys>();
 
-const show = computed(() => props.show);
+const show = computed({
+  get: () => props.show,
+  set: (value) => {
+    emit('update:show', value);
+  },
+});
+
 const disableApply = computed(() => {
   return (
     props.selectionMode === 'single' && !Object.keys(selectedGroupsTemp).length
@@ -39,46 +46,48 @@ watch(
 </script>
 
 <template>
-  <Dialog
-    v-model:visible="show"
-    :base-z-index="99999999"
-    :draggable="false"
-    :header="header ?? props.readonly ? 'Selected Group' : 'Select Group'"
-    @hide="() => (selectedGroupsTemp = {})"
-    @update:visible="!$event && emit('cancel')"
-    closable
-    modal
-    style="width: 400px"
-  >
-    <GroupTree
-      v-model:selected-keys="selectedGroupsTemp"
-      :params="props.params"
-      :readonly="props.readonly"
-      :selection-mode="props.selectionMode"
-      @key-change="emit('keyChange', $event)"
-      filter-by="name"
-      filter-placeholder="Search"
-    />
-    <template #footer>
-      <template v-if="props.readonly">
-        <TSButton
-          @click="emit('cancel')"
-          label="Close"
-          severity="secondary"
-          text-only
-        />
+  <div class="select-group-dialog-wrapper">
+    <Dialog
+      v-model:visible="show"
+      :base-z-index="99999999"
+      :draggable="false"
+      :header="header ?? props.readonly ? 'Selected Group' : 'Select Group'"
+      @hide="() => (selectedGroupsTemp = {})"
+      @update:visible="!$event && emit('cancel')"
+      closable
+      modal
+      style="width: 400px"
+    >
+      <GroupTree
+        v-model:selected-keys="selectedGroupsTemp"
+        :params="props.params"
+        :readonly="props.readonly"
+        :selection-mode="props.selectionMode"
+        @key-change="emit('keyChange', $event)"
+        filter-by="name"
+        filter-placeholder="Search"
+      />
+      <template #footer>
+        <template v-if="props.readonly">
+          <TSButton
+            @click="emit('cancel')"
+            label="Close"
+            severity="secondary"
+            text-only
+          />
+        </template>
+        <template v-else>
+          <TSButton @click="emit('cancel')" label="Cancel" text-only />
+          <TSButton
+            :disabled="disableApply"
+            :label="buttonLabel ?? 'Apply'"
+            @click="emit('apply', selectedGroupsTemp)"
+            severity="success"
+          />
+        </template>
       </template>
-      <template v-else>
-        <TSButton @click="emit('cancel')" label="Cancel" text-only />
-        <TSButton
-          :disabled="disableApply"
-          :label="buttonLabel ?? 'Apply'"
-          @click="emit('apply', selectedGroupsTemp)"
-          severity="success"
-        />
-      </template>
-    </template>
-  </Dialog>
+    </Dialog>
+  </div>
 </template>
 <style scoped lang="scss">
 ::-webkit-scrollbar {

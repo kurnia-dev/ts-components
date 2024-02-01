@@ -18,7 +18,9 @@ onBeforeMount(async () => {
 });
 
 onMounted(() => {
-  expandedKeys.value = { '-1': true };
+  if (tree.value) {
+    expandedKeys.value = { '-1': true };
+  }
 });
 
 const selectedKey = computed({
