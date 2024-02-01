@@ -12,6 +12,7 @@ const props = defineProps<{
   validatorMessage?: string;
   placeholder?: string;
   type?: 'email' | 'text';
+  disabled?: boolean;
 }>();
 
 defineEmits<{
@@ -55,6 +56,7 @@ const setValidatorMessage = (value: string): boolean | string => {
       <InputText
         v-model="field.value"
         :class="[{ 'p-invalid': field.errorMessage }, 'w-100']"
+        :disabled="disabled"
         :placeholder="
           placeholder ?? `Input ${label ? label.toLowerCase() : 'text'}`
         "
@@ -67,3 +69,11 @@ const setValidatorMessage = (value: string): boolean | string => {
     </div>
   </div>
 </template>
+<style lang="scss">
+@import 'var';
+
+.p-inputtext:disabled {
+  background-color: $general-input;
+  border-color: $general-body;
+}
+</style>
