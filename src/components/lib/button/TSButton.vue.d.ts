@@ -45,7 +45,9 @@ interface ButtonSlots {
 /**
  * Button component emits
  */
-export interface ButtonEmits {}
+export type ButtonEmits = {
+  click: [];
+};
 
 /**
  * **TSVue - Button**

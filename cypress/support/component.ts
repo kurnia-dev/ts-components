@@ -15,6 +15,7 @@ import 'assets/app.scss';
 import PrimeVue from 'primevue/config';
 import Calendar from 'primevue/calendar';
 import TSCalendar from '../../src/components/lib/calendar/TSCalendar.vue';
+import InputText from 'primevue/inputtext';
 
 Cypress.Commands.add('mount', (component: DefineComponent, options = {}) => {
   options.global = options.global || {};
@@ -29,6 +30,7 @@ Cypress.Commands.add('mount', (component: DefineComponent, options = {}) => {
 
       app.component('Calendar', Calendar);
       app.component('TSCalendar', TSCalendar);
+      app.component('InputText', InputText);
     },
   });
 

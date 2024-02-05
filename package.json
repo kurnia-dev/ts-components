@@ -1,6 +1,6 @@
 {
   "name": "ts-vue-components",
-  "version": "0.2.6",
+  "version": "0.2.8",
   "type": "module",
   "description": "Tag Samurai's Vue Components",
   "exports": "./dist/ts-vue-components.es.js",
@@ -26,9 +26,10 @@
     "generate:types": "vue-tsc --declaration --emitDeclarationOnly --outdir ./dist",
     "cypress:component": "cypress open --component --browser chrome",
     "test:unit": "nyc instrument ./src ./.nyc_output && cypress run --spec \"**/*.cy.spec.{js,jsx,ts,tsx}\" --browser chrome",
-    "test:all": "nyc instrument ./src ./.nyc_output && cypress open --e2e --browser chrome"
+    "test:all": "cypress run --spec \"**/*.cy.spec.{js,jsx,ts,tsx}\""
   },
   "nyc": {
+    "all": true,
     "instrument": true,
     "report-dir": "cypress-coverage",
     "reporter": [
@@ -38,7 +39,8 @@
       "text"
     ],
     "include": [
-      "src/**/*.ts"
+      "src/**/*.ts",
+      "src/**/*.vue"
     ],
     "exclude": [
       "src/**/*spec.ts"
@@ -73,7 +75,7 @@
     "@vue/test-utils": "^2.4.3",
     "@vue/tsconfig": "^0.5.0",
     "babel-plugin-istanbul": "^6.1.1",
-    "cypress": "^13.6.1",
+    "cypress": "^13.6.4",
     "cypress-mochawesome-reporter": "^3.8.1",
     "cypress-real-events": "^1.11.0",
     "eslint": "^8.49.0",
@@ -89,6 +91,7 @@
     "rfs": "^10.0.0",
     "sass": "^1.70.0",
     "start-server-and-test": "^2.0.3",
+    "typedoc": "^0.25.7",
     "typescript": "~5.3.0",
     "vite": "^5.0.10",
     "vite-plugin-dts": "^3.7.1",

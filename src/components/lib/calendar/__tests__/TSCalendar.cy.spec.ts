@@ -90,7 +90,7 @@ describe('TSCalendar.vue', () => {
     cy.mount(TSCalendar, { props }).then(({ wrapper }) => {
       cy.get('.ts-dateinput').click();
       cy.get('.p-datepicker-today').click();
-      cy.get('.p-datepicker-today').next().click();
+      cy.get('.p-datepicker-today').prev().click();
 
       cy.then(() => {
         expect(wrapper.emitted()['update:modelValue'][1][0]).to.have.length(2);
@@ -126,5 +126,20 @@ describe('TSCalendar.vue', () => {
         'not.be.visible',
       );
     });
+  });
+
+  it('should show given date on mouonted', () => {
+    const date = +new Date();
+
+    render({
+      modelValue: date,
+      mode: 'single',
+    });
+
+    cy.get('.ts-dateinput')
+      .invoke('val')
+      .then((textVal) => {
+        expect(textVal).to.not.eq('');
+      });
   });
 });

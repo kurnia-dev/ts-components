@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import CodeBlock from '@/components/codeblock/CodeBlock.vue';
-import SelectGroup from '@/components/lib/selectgroup/SelectGroup.vue';
 import { ref } from 'vue';
 const group = ref();
+import SelectGroupDialog from '../lib/selectgroupdialog/SelectGroupDialog.vue';
+const showSelectGroupDialog = ref<boolean>(false);
+import TSButton from '../lib/button/TSButton.vue';
 </script>
 
 <template>
@@ -21,6 +23,18 @@ const group = ref();
   <CodeBlock lang="ts">
     import { TSInputText } from 'ts-vue-components'
   </CodeBlock>
+  <TSButton @click="console.log('click')" label="Select Group" />
+  <Button
+    @click="console.log('clicke'), (showSelectGroupDialog = true)"
+    label="Click"
+  />
+  <button onclick="console.log('clicked')">Click</button>
+  <SelectGroupDialog
+    :show="showSelectGroupDialog"
+    @apply="console.log($event)"
+    @cancel="() => (showSelectGroupDialog = false)"
+    selection-mode="single"
+  />
 </template>
 <style lang="scss">
 .component-preview {

@@ -270,7 +270,8 @@ const onSave = (): void => {
 }
 
 .ts-form-validator-message {
-  position: static;
+  position: static !important;
   width: max-content;
+  transform: none !important;
 }
 </style>

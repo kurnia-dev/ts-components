@@ -14,13 +14,28 @@ const emit = defineEmits<{
 
 onMounted(() => {
   setValidator();
+  date.value = parseDateFromProps();
 });
 
-const date = ref<string>();
 const field = reactive<FieldValidation>({});
+
+const date = ref<string | string[]>();
 
 const getGMTTime = (dateString: string): number => {
   return new Date(new Date(dateString).toUTCString()).getTime();
+};
+
+const getLocalTime = (timeStamp?: number): string => {
+  if (timeStamp) {
+    return new Date(timeStamp).toLocaleDateString();
+  }
+
+  return '';
+};
+
+const parseDateFromProps = (): string | string[] => {
+  if (!Array.isArray(props.modelValue)) return getLocalTime(props.modelValue);
+  return props.modelValue.map((timeStamp) => getLocalTime(timeStamp)).join('-');
 };
 
 const parseDate = (dateToParse: string | string[]): number | number[] => {
@@ -40,12 +55,20 @@ const setClass = (): void => {
   highlights[highlights.length - 1]?.classList.add('first-and-last');
 };
 
-watch(date, (newDate: string | undefined) => {
+watch(date, (newDate: string | string[] | undefined) => {
   if (newDate) {
     const parsed = parseDate(newDate);
     emit('update:modelValue', parsed);
   }
 });
+
+const unwatch = watch(
+  () => props.modelValue,
+  () => {
+    date.value = parseDateFromProps();
+    unwatch();
+  },
+);
 
 const setValidator = (): void => {
   if (props.useValidator) {
@@ -56,6 +79,11 @@ const setValidator = (): void => {
         return true;
       }),
     );
+
+    /**
+     * Need update from Ts-admin-components
+     */
+    field.value = props.modelValue;
   }
 };
 
