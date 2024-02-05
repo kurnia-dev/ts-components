@@ -9,14 +9,23 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Cypress run
+      - name: Cypress E2E Tests
         uses: cypress-io/github-action@v6
         with:
           start: npm run dev
           wait-on: 'http://localhost:8080'
           record: true
           parallel: true
-          command-prefix: "npm run cy:test-all"
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cypress Component Tests
+        uses: cypress-io/github-action@v6
+        with:
+          record: true
+          parallel: true
+          command-prefix: 'cypress run --component'
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
