@@ -41,8 +41,11 @@ export default defineConfig({
       },
     },
   },
-  preview: {
+  server: {
     port: 8080,
+    hmr: {
+      overlay: false,
+    },
   },
   resolve: {
     alias: {

@@ -5,10 +5,11 @@ import reporter from 'cypress-mochawesome-reporter/plugin';
 export default defineConfig({
   projectId: 'b2yz2p',
   reporter: 'cypress-mochawesome-reporter',
-  viewportWidth: 720,
-  viewportHeight: 480,
+  viewportWidth: 1366,
+  viewportHeight: 720,
   e2e: {
-    specPattern: '**/unit/*.cy.spec.{js,jsx,ts,tsx}',
+    baseUrl: 'http://localhost:8080',
+    specPattern: 'cypress/e2e/**/*.cy.spec.ts',
     supportFile: 'cypress/support/e2e.ts',
     setupNodeEvents(on, config) {
       Task(on, config);
