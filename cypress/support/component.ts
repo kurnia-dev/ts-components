@@ -1,6 +1,6 @@
 /* eslint-disable vue/multi-word-component-names */
 /// <reference types="cypress" />
-import { App, DefineComponent } from 'vue';
+import type { App, DefineComponent } from 'vue';
 import { mount } from '@cypress/vue';
 import '@cypress/code-coverage/support';
 

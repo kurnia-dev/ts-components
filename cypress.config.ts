@@ -1,6 +1,5 @@
 import { defineConfig } from 'cypress';
 import Task from '@cypress/code-coverage/task';
-import reporter from 'cypress-mochawesome-reporter/plugin';
 
 export default defineConfig({
   projectId: 'b2yz2p',
@@ -13,10 +12,10 @@ export default defineConfig({
     supportFile: 'cypress/support/e2e.ts',
     setupNodeEvents(on, config) {
       Task(on, config);
-      reporter(on);
 
       return config;
     },
+    experimentalRunAllSpecs: true,
   },
   component: {
     specPattern: 'src/**/*.cy.spec.{js,jsx,ts,tsx}',
@@ -28,7 +27,6 @@ export default defineConfig({
     },
     setupNodeEvents(on, config) {
       Task(on, config);
-      reporter(on);
 
       return config;
     },

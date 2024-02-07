@@ -18,6 +18,7 @@ import TSButton from '@/components/lib/button/TSButton.vue';
 
       <router-link aria-label="Explore Components" to="/button">
         <TSButton
+          data-test="explore-button"
           icon="ri-arrow-right-line"
           icon-pos="right"
           label="Explore Components"
