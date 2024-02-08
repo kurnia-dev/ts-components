@@ -57,11 +57,14 @@ const outerFieldsWrapper = ref<HTMLDivElement | null>(null);
 const stayAfterSubmit = ref<boolean>(false);
 
 const setOuterFieldsWrapperHeight = (): void => {
-  const footerHeight = footer.value?.offsetHeight;
-  if (outerFieldsWrapper.value)
-    outerFieldsWrapper.value.style.height = `calc(100% + ${
-      (footerHeight ?? 0) + 20
-    }px)`;
+  if (footer.value) {
+    const footerHeight = footer.value?.offsetHeight;
+
+    if (outerFieldsWrapper.value)
+      outerFieldsWrapper.value.style.height = `calc(100% + ${
+        footerHeight + 20
+      }px)`;
+  }
 };
 
 const setDialogClass = (): void => {
@@ -125,12 +128,14 @@ const onSave = (): void => {
           <Button
             v-if="props.buttonsTemplate?.includes('cancel')"
             @click="$emit('cancel')"
+            data-test="cancel-button"
             label="Cancel"
             type="button"
           />
           <Button
             v-if="props.buttonsTemplate?.includes('clear')"
             @click="fieldsKey++, $emit('clear')"
+            data-test="clear-button"
             label="Clear Field"
             severity="primary"
             text-only
@@ -139,6 +144,7 @@ const onSave = (): void => {
           <Button
             v-if="props.buttonsTemplate?.includes('save-outlined')"
             @click="onSave"
+            data-test="save-outlined-button"
             label="Save"
             outlined
             severity="success"
@@ -147,6 +153,7 @@ const onSave = (): void => {
           <Button
             v-if="props.buttonsTemplate?.includes('save')"
             @click="onSave"
+            data-test="save-button"
             label="Save"
             severity="success"
             type="button"
@@ -154,6 +161,7 @@ const onSave = (): void => {
           <Button
             v-if="props.buttonsTemplate?.includes('submit')"
             @click="onSubmitClicked"
+            data-test="submit-button"
             label="Submit"
             severity="success"
             type="submit"
