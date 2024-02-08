@@ -1,3 +1,4 @@
+/* eslint-disable vue/no-reserved-component-names */
 /* eslint-disable vue/multi-word-component-names */
 /// <reference types="cypress" />
 import type { App, DefineComponent } from 'vue';
@@ -19,6 +20,7 @@ import TSInputText from '../../src/components/lib/inputtext/TSInputText.vue';
 import TSForm from '../../src/components/lib/tsform/TSForm.vue';
 import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
+import Dialog from 'primevue/dialog';
 
 Cypress.Commands.add('mount', (component: DefineComponent, options = {}) => {
   options.global = options.global || {};
@@ -37,6 +39,7 @@ Cypress.Commands.add('mount', (component: DefineComponent, options = {}) => {
       app.component('TSForm', TSForm);
       app.component('InputText', InputText);
       app.component('Checkbox', Checkbox);
+      app.component('Dialog', Dialog);
     },
   });
 

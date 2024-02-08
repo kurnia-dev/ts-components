@@ -1,0 +1,66 @@
+@import 'var';
+@import 'rfs/scss';
+
+.ts-confirmdialog {
+  .ts-confirmdialog-header {
+    padding: 24px 24px 12px !important;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    height: 60px;
+
+    .ts-confirmdialog-title {
+      color: $general-header-weak;
+      text-align: center;
+
+      @include font-size(14px);
+      font-style: normal;
+      font-weight: 700;
+      line-height: 18px;
+      letter-spacing: 0.28px;
+    }
+
+    .p-dialog-header-icons {
+      margin-left: auto !important;
+    }
+
+    .p-dialog-header-close {
+      width: 24px !important;
+      height: 24px !important;
+
+      .p-dialog-header-close-icon {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
+
+  .p-dialog-content {
+    color: $general-header-weak;
+
+    @include font-size(11.2px);
+    font-weight: 500;
+    line-height: 16.8px;
+    padding: 0 24px 12px;
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+
+    ul {
+      list-style-position: inside;
+      padding-left: 0.7rem;
+    }
+
+    > * {
+      margin-bottom: 0 !important;
+    }
+  }
+
+  .p-dialog-footer {
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    gap: 12px;
+  }
+}
