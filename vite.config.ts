@@ -12,20 +12,28 @@ export default defineConfig({
       insertTypesEntry: true,
     }),
     istanbul({
-      include: 'src/*',
-      exclude: ['node_modules', 'test/'],
-      extension: ['.js', '.ts', '.vue'],
+      include: ['src/**/lib'],
+      exclude: [
+        'node_modules',
+        'test/',
+        'src/**/*.spec.ts',
+        'src/**/*.spec.ts',
+        'src/**/*.type.ts',
+        'src/**/*.dto.ts',
+        'src/**/*.d.ts',
+      ],
+      extension: ['.ts', '.vue'],
       requireEnv: false,
     }),
   ],
   build: {
-    emptyOutDir: false,
+    emptyOutDir: true,
     outDir: 'dist',
     sourcemap: true,
     lib: {
       entry: resolve(__dirname, 'src/components/index.ts'),
       name: 'ts-vue-components',
-      formats: ['es', 'cjs', 'umd'],
+      formats: ['es', 'cjs'],
       fileName: (format) => `ts-vue-components.${format}.js`,
     },
     rollupOptions: {
@@ -34,7 +42,8 @@ export default defineConfig({
       },
       external: ['vue'],
       output: {
-        exports: 'named',
+        inlineDynamicImports: false,
+        exports: 'auto',
         globals: {
           vue: 'Vue',
         },
