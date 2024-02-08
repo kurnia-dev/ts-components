@@ -1,21 +1,4 @@
-import { DefineComponent, Ref } from 'vue';
-import { FieldContext } from 'vee-validate';
-
-type FieldValue =
-  | Nullable<string>
-  | Nullable<number>
-  | string
-  | string[]
-  | number
-  | number[]
-  | boolean
-  | undefined
-  | null
-  | object;
-
-export type FieldValidation =
-  | { value?: FieldValue; errorMessage?: Ref<string | undefined> }
-  | FieldContext;
+import { DefineComponent } from 'vue';
 
 /**
  * TSInputText component props
@@ -29,14 +12,15 @@ export interface TSInputTextProps {
   validatorMessage?: string;
   placeholder?: string;
   type?: 'email' | 'text';
+  disabled?: boolean;
 }
 
 /**
  * TSInputText component emits
  */
-export interface TSInputTextEmits {
-  'update:modelValue': (value?: string) => void;
-}
+export type TSInputTextEmits = {
+  'update:modelValue': [payload?: string];
+};
 
 /**
  * TSInputText component

@@ -1,31 +1,22 @@
 <script setup lang="ts">
 import { onMounted, reactive } from 'vue';
 import { useField } from 'vee-validate';
-import { FieldValidation } from './TSInputText.vue.d';
+import { FieldValidation } from '@/types/fieldValidation.type';
+import { TSInputTextEmits, TSInputTextProps } from './TSInputText.vue.d';
 
-const props = defineProps<{
-  modelValue?: string;
-  label?: string;
-  fieldName?: string;
-  mandatory?: boolean;
-  useValidator?: boolean;
-  validatorMessage?: string;
-  placeholder?: string;
-  type?: 'email' | 'text';
-  disabled?: boolean;
-}>();
+const props = defineProps<TSInputTextProps>();
 
-defineEmits<{
-  'update:modelValue': [value?: string];
-}>();
+defineEmits<TSInputTextEmits>();
 
-const field = reactive<FieldValidation>({ value: props.modelValue });
+const field = reactive<FieldValidation>({
+  value: props.modelValue,
+});
 
 onMounted(() => {
   if (props.useValidator) {
     Object.assign(
       field,
-      useField(props.fieldName ?? '', (value: string) => {
+      useField(props.fieldName ?? 'textInput', (value: string) => {
         if (props.mandatory) return setValidatorMessage(value);
         return true;
       }),
@@ -48,22 +39,29 @@ const setValidatorMessage = (value: string): boolean | string => {
 </script>
 <template>
   <div class="field_wrapper">
-    <label>
+    <label v-if="label">
       {{ label }}
       <span v-if="mandatory" class="text-danger">*</span>
     </label>
     <div class="input_wrapper">
       <InputText
-        v-model="field.value"
         :class="[{ 'p-invalid': field.errorMessage }, 'w-100']"
         :disabled="disabled"
+        :model-value="props.modelValue"
         :placeholder="
           placeholder ?? `Input ${label ? label.toLowerCase() : 'text'}`
         "
-        @update:model-value="$emit('update:modelValue', $event)"
+        @update:model-value="
+          $emit('update:modelValue', $event), (field.value = $event)
+        "
         class="ts-inputtext"
       />
-      <small id="dd-error" v-if="field.errorMessage" class="validator-message">
+      <small
+        id="dd-error"
+        v-show="field.errorMessage"
+        class="validator-message"
+        data-test="inputtext-validator-msg"
+      >
         {{ field.errorMessage }}
       </small>
     </div>
