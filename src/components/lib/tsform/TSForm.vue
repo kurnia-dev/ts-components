@@ -4,25 +4,13 @@ import { useForm } from 'vee-validate';
 import Button from '../button/TSButton.vue';
 import ValidatorMessage from '../validatormessage/ValidatorMessage.vue';
 import { FormPayload } from '@/types/tsForm.type';
+import { TSFormProps, TSFormEmits, TSFormSlots } from './TSForm.vue.d';
 
 const { handleSubmit, values } = useForm();
 
-type FormButton = 'clear' | 'submit' | 'save' | 'save-outlined' | 'cancel';
-type ButtonsTemplate = FormButton[];
-
-const props = defineProps<{
-  columnPerRow?: number;
-  buttonsTemplate?: ButtonsTemplate;
-  hideStayCheckbox?: boolean;
-  stickyButtons?: boolean;
-}>();
-
-const emit = defineEmits<{
-  submit: [values: FormPayload];
-  save: [values: FormPayload];
-  clear: [];
-  cancel: [];
-}>();
+const props = defineProps<TSFormProps>();
+const emit = defineEmits<TSFormEmits>();
+defineSlots<TSFormSlots>();
 
 onMounted(() => {
   if (fieldsWrapper.value) {
