@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
-import TSForm from '../tsform/TSForm.vue';
-import TSInputText from './TSInputText.vue';
-import { TSInputTextProps } from './TSInputText.vue.d';
+import TSForm from '../../tsform/TSForm.vue';
+import TSInputText from '../TSInputText.vue';
+import { TSInputTextProps } from '../TSInputText.vue';
 
 const render = (props?: TSInputTextProps): void => {
   cy.mount(TSInputText, {
