@@ -14,28 +14,31 @@ const emit = defineEmits<{
 
 onMounted(() => {
   setValidator();
-  date.value = parseDateFromProps();
+  if (props.dateValue && props.useValidator) {
+    date.value = parseDateFromProps();
+    field.value = props.dateValue;
+  }
 });
 
 const field = reactive<FieldValidation>({});
-
 const date = ref<string | string[]>();
 
 const getGMTTime = (dateString: string): number => {
   return new Date(new Date(dateString).toUTCString()).getTime();
 };
 
-const getLocalTime = (timeStamp?: number): string => {
+const getLocalTime = (timeStamp?: number): string | undefined => {
   if (timeStamp) {
     return new Date(timeStamp).toLocaleDateString();
   }
-
-  return '';
 };
 
-const parseDateFromProps = (): string | string[] => {
-  if (!Array.isArray(props.modelValue)) return getLocalTime(props.modelValue);
-  return props.modelValue.map((timeStamp) => getLocalTime(timeStamp)).join('-');
+/**
+ * This function will parse the date number/timestamp into date string that can be displayed on date input.
+ */
+const parseDateFromProps = (): string | string[] | undefined => {
+  if (!Array.isArray(props.dateValue)) return getLocalTime(props.dateValue);
+  return props.dateValue.map((timeStamp) => getLocalTime(timeStamp)).join('-');
 };
 
 const parseDate = (dateToParse: string | string[]): number | number[] => {
@@ -55,35 +58,15 @@ const setClass = (): void => {
   highlights[highlights.length - 1]?.classList.add('first-and-last');
 };
 
-watch(date, (newDate: string | string[] | undefined) => {
-  if (newDate) {
-    const parsed = parseDate(newDate);
-    emit('update:modelValue', parsed);
-  }
-});
-
-const unwatch = watch(
-  () => props.modelValue,
-  () => {
-    date.value = parseDateFromProps();
-    unwatch();
-  },
-);
-
 const setValidator = (): void => {
   if (props.useValidator) {
     Object.assign(
       field,
-      useField(props.fieldName ?? '', (value: string) => {
+      useField(props.fieldName ?? 'date', (value: string) => {
         if (props.mandatory) return setValidatorMessage(value);
         return true;
       }),
     );
-
-    /**
-     * Need update from Ts-admin-components
-     */
-    field.value = props.modelValue;
   }
 };
 
@@ -97,6 +80,15 @@ const setValidatorMessage = (value: string): boolean | string => {
 
   return true;
 };
+
+const unwatch = watch(
+  () => props.dateValue,
+  () => {
+    date.value = parseDateFromProps();
+    field.value = props.dateValue;
+    unwatch();
+  },
+);
 </script>
 
 <template>
@@ -115,7 +107,14 @@ const setValidatorMessage = (value: string): boolean | string => {
         }"
         :selection-mode="mode ?? 'single'"
         @show="setClass"
-        @update:model-value="(field.value = parseDate($event)), setClass()"
+        @update:model-value="
+          (event: string | string[]) => {
+            const parsedDate = parseDate(event);
+            emit('update:modelValue', parsedDate);
+            field.value = parsedDate;
+            setClass();
+          }
+        "
         hide-on-range-selection
         icon-display="input"
         placeholder="Select date"

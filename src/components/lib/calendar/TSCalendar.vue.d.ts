@@ -9,6 +9,10 @@ export interface TSCalendarProps {
    */
   modelValue?: number | number[];
   /**
+   * To display the initial date value, used in edit form, taht sometime need to display the already inputed date.
+   */
+  dateValue?: number | number[];
+  /**
    * Display label on top of Date Input.
    */
   label?: string;

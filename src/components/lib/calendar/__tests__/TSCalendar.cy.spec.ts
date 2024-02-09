@@ -107,7 +107,7 @@ describe('TSCalendar.vue', () => {
         components: TSCalendar,
         slots: {
           fields:
-            '<TSCalendar label="Date" use-validator field-name="date" mandatory />',
+            '<TSCalendar label="Date" use-validator field-name="date" mandatory mode="range" />',
         },
       });
     });
@@ -128,12 +128,13 @@ describe('TSCalendar.vue', () => {
     });
   });
 
-  it('should show given date on mouonted', () => {
+  it('should show given single date value on mounted', () => {
     const date = +new Date();
 
     render({
-      modelValue: date,
+      dateValue: date,
       mode: 'single',
+      useValidator: true,
     });
 
     cy.get('.ts-dateinput')
@@ -142,4 +143,56 @@ describe('TSCalendar.vue', () => {
         expect(textVal).to.not.eq('');
       });
   });
+
+  it('should show given date range value on mounted', () => {
+    const date = [+new Date(), +new Date()];
+
+    render({
+      dateValue: date,
+      mode: 'single',
+      useValidator: true,
+    });
+
+    cy.get('.ts-dateinput')
+      .invoke('val')
+      .then((textVal) => {
+        cy.wrap(textVal).should('not.eq', '').and('contains', '-');
+      });
+  });
+
+  /*
+   * It('should show given date range value with async data', () => {
+   *   cy.clock();
+   *   let date: number[] | undefined = undefined;
+   *
+   *   const TestComponent = {
+   *     components: { TSCalendar },
+   *     data(): { dateValue?: number[] } {
+   *       return { dateValue: date };
+   *     },
+   *     template: `
+   *       <TSCalendar
+   *         :dateValue="dateValue"
+   *         mode="single"
+   *         useValidator
+   *       />
+   *     `,
+   *   };
+   *
+   *   cy.mount(TestComponent).as('TestComponent');
+   *
+   *   cy.tick(2000).then(() => {
+   *     date = [+new Date(), +new Date()];
+   *     cy.get('@TestComponent')
+   *       .its('wrapper')
+   *       .invoke('setData', { dateValue: date });
+   *   });
+   *
+   *   cy.get('.ts-dateinput')
+   *     .invoke('val')
+   *     .then((textVal) => {
+   *       cy.wrap(textVal).should('not.eq', '').and('contains', '-');
+   *     });
+   * });
+   */
 });
